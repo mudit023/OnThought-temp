@@ -1,5 +1,12 @@
 .container{
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  /* background-color: blueviolet; */
   gap: 1.5rem;
+}
+
+h1{
+  color: #cbd5df;
 }
