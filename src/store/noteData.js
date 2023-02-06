@@ -39,7 +39,7 @@ const slice = createSlice({
   name: 'note Slice',
   initialState,
   reducers: {
-    addNote(nda){
+    addNote(state, action){
       
     },
     removeNote(){},
