@@ -6,16 +6,37 @@
   background-color: #171a23;
   padding: 1rem 1.5rem;
   border-radius: 4px;
-  height: 20rem;
-  width: 16rem;
+  height: 28rem;
+  width: 20rem;
+  cursor: pointer;
 }
 
+.title{
+  overflow: hidden;
+  width: 100%;
+  word-break: break-all;
+  margin-bottom: 20px;
+}
+.body{
+  height: 100%;
+  margin-bottom: 15px;
+}
 .note-title{
-  font-size: 2.4rem;
+  font-size: 1.8rem;
   color: #cbd5df;
+  font-weight: 500;
 }
 .note-body{
-  font-size: 2rem;
+  width: 100%;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  overflow: hidden;
+  position: relative;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* font-family: 'Merriweather', serif; */
+  font-size: 1.6rem;
   color: #a6aeb5;
 }
 .note-info{

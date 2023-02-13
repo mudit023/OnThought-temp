@@ -36,12 +36,12 @@ import { useSelector } from "react-redux";
 //   },
 // ];
 
-function Notes() {
+function Notes(props) {
   const notes = useSelector(state => state.noteReducer.notes);
   return (
     <div className={classes.container}>
       {notes.map((item) => (
-        <Note title={item.title} body={item.body} key={item.id}/>
+        <Note title={item.title} body={item.body} key={item.id} id={item.id} dateObj={item.dateObj} openOldNoteHandler={props.openOldNoteHandler}/>
       ))}
     </div>
   );

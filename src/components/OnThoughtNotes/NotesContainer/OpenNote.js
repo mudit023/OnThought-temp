@@ -1,32 +1,45 @@
 import React, { useRef } from "react";
-import classes from "./NoteForm.module.css";
+import classes from "./OpenNote.module.css";
 import Modal from "../../UI/Modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { action } from "../../../store/noteData";
 
-function NoteForm(props) {
+function OpenNote(props) {
+  const oldNoteData = useSelector(state=>state.noteReducer.notes);
+  let data = {};
   const dispatch = useDispatch();
   const titleRef = useRef();
   const desRef = useRef();
+
+    for(let i=0; i<oldNoteData.length; i++){
+      if(oldNoteData[i].id===props.id){
+          data={...oldNoteData[i]};
+      }
+    }
 
   const submitHandler = (e) => {
     e.preventDefault();
     const title = titleRef.current.value;
     const body = desRef.current.value;
-    dispatch(action.addNote({title, body}));
+    dispatch(action.editNote({title, body, id:props.id}));
 
     // console.log(title);
     // console.log(description);
-    props.closeNote();
+    props.closeOldNote();
     titleRef.current.value = "";
     desRef.current.value = "";
   };
 
   const cancelBtnHandler = () => {
-    props.closeNote();
+    props.closeOldNote();
+  }
+
+  const deleteNoteHandler = () => {
+    dispatch(action.removeNote(props.id))
+    props.closeOldNote();
   }
   return (
-    <Modal onClose={props.closeNote}>
+    <Modal onClose={props.closeOldNote}>
       <div className={classes.container}>
         <form className={classes.noteForm} onSubmit={submitHandler}>
           <div className={classes.title}>
@@ -37,6 +50,7 @@ function NoteForm(props) {
               placeholder="Title"
               maxLength={50}
               required={true}
+              defaultValue={data.title}
             />
           </div>
           <div className={classes.description}>
@@ -46,11 +60,13 @@ function NoteForm(props) {
               ref={desRef}
               rows={6}
               placeholder="Write your thought..."
+              defaultValue={data.body}
             />
           </div>
           <div className={classes.btn}>
             <button type="button" onClick={cancelBtnHandler}>Cancel</button>
-            <button type="submit">Add</button>
+            <button type="submit">Edit</button>
+            <button type="button" onClick={deleteNoteHandler}>Delete</button>
           </div>
         </form>
       </div>
@@ -58,4 +74,4 @@ function NoteForm(props) {
   );
 }
 
-export default NoteForm;
+export default OpenNote;
