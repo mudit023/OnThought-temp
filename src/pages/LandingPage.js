@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 function LandingPage() {
   return (
     <div className="container min-w-full min-h-[100vh] pt-10">
-      <NavLink
+      <nav
         className={"flex justify-between items-center w-full py-3 px-5 mb-10"}
       >
         <div className="text-xl font-medium text-cyan-100">OnThought</div>
@@ -17,7 +17,7 @@ function LandingPage() {
             Check Now
           </Link>
         </div>
-      </NavLink>
+      </nav>
       <main className="flex items-start">
         <div className="flex w-full h-[86vh] flex-col items-center justify-center border border-[#2c2c2cd1]">
           <div className="flex flex-col gap-2 leading-none">
